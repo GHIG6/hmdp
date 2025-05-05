@@ -1,0 +1,5 @@
+*.md
+target/
+logs/
+.idea/
+*.iml
