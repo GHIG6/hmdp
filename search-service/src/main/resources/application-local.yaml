@@ -1,0 +1,5 @@
+hm:
+  db:
+    host: localhost
+    pw: root
+

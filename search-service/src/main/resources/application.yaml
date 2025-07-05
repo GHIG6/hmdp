@@ -1,0 +1,44 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: search-service
+  cloud:
+    nacos:
+      server-addr: 123.60.183.42:8848 # nacos地址
+  profiles:
+    active: dev
+  elasticsearch:
+    rest:
+      uris: http://localhost:9200  # ES服务地址
+
+# RocketMQ 配置
+rocketmq:
+  name-server: localhost:9876  # RocketMQ NameServer 地址
+  producer:
+    group: search-producer-group
+    send-message-timeout: 3000
+    retry-times-when-send-failed: 2
+logging:
+  level:
+    com.hmall: debug
+  pattern:
+    dateformat: HH:mm:ss:SSS
+  file:
+    path: "logs/${spring.application.name}"
+knife4j:
+  enable: true
+  openapi:
+    title: 黑马商城搜索服务接口文档
+    description: "黑马商城搜索服务接口文档"
+    email: zhanghuyi@itcast.cn
+    concat: binZhang
+    url: https://www.itcast.cn
+    version: v1.0.0
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - com.hmall.search.controller
+
