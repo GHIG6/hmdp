@@ -1,0 +1,10 @@
+hm:
+  db:
+    host: localhost
+    pw: root
+  redis:
+    host: localhost
+    pw: 
+  mq:
+    host: localhost
+
