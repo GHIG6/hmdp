@@ -1,0 +1,63 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: behavior-service
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://${hmall.db.host:192.168.150.101}:${hmall.db.port:3306}/${hmall.db.database:hm-behavior}?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${hmall.db.un:root}
+    password: ${hmall.db.pw:123}
+  redis:
+    host: ${hmall.redis.host:192.168.150.101}
+    port: ${hmall.redis.port:6379}
+    password: ${hmall.redis.password:123321}
+  cloud:
+    nacos:
+      server-addr: ${hmall.nacos.host:192.168.150.101}:${hmall.nacos.port:8848}
+
+mybatis-plus:
+  configuration:
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+  global-config:
+    db-config:
+      update-strategy: not_null
+      id-type: auto
+
+logging:
+  level:
+    com.hmall: debug
+  pattern:
+    dateformat: HH:mm:ss:SSS
+  file:
+    path: "logs/${spring.application.name}"
+
+knife4j:
+  enable: true
+  openapi:
+    title: 用户行为服务接口文档
+    description: "用户行为服务接口文档"
+    email: zhanghuyi@itcast.cn
+    concat: binZhang
+    url: https://www.itcast.cn
+    version: v1.0.0
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - com.hmall.behavior.controller
+
+# XXL-Job 配置
+xxl:
+  job:
+    admin:
+      addresses: http://${hmall.xxljob.host:192.168.150.101}:${hmall.xxljob.port:8880}/xxl-job-admin
+    executor:
+      appname: behavior-service-executor
+      port: 9999
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30
+

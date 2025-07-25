@@ -1,0 +1,18 @@
+hmall:
+  db:
+    host: 192.168.150.101
+    port: 3306
+    database: hm-behavior
+    un: root
+    pw: 123
+  redis:
+    host: 192.168.150.101
+    port: 6379
+    password: 123321
+  nacos:
+    host: 192.168.150.101
+    port: 8848
+  xxljob:
+    host: 192.168.150.101
+    port: 8880
+
